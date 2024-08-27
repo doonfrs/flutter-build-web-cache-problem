@@ -29,9 +29,9 @@ echo "reading version from pubspec.yaml without + sign"
 version=$(grep version: pubspec.yaml | sed 's/version: //g' | sed 's/+//g')
 
 echo "Patching version in js partial urls in main.dart.js"
-sed -i "s/\`\${w}\${s}\`/\`\${w}\${s}?v=$version\`/g" build/web/flutter.js
-sed -i "s/\`\${w}\${s}\`/\`\${w}\${s}?v=$version\`/g" build/web/flutter_bootstrap.js
-sed -i "s/\`\${w}\${s}\`/\`\${w}\${s}?v=$version\`/g" build/web/index.html
+sed -i "s/\"main.dart.js\"/\"main.dart.js?v=$version\"/g" build/web/flutter.js
+sed -i "s/\"main.dart.js\"/\"main.dart.js?v=$version\"/g" build/web/flutter_bootstrap.js
+sed -i "s/\"main.dart.js\"/\"main.dart.js?v=$version\"/g" build/web/index.html
 
 
 echo "Patching assets loader with v=$version in main.dart.js"
